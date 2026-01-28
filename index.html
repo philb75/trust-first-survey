@@ -18,6 +18,8 @@
             --border: #e2e8f0;
             --error: #e53e3e;
             --success: #38a169;
+            --submit: #e67e22;
+            --submit-dark: #d35400;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -26,7 +28,7 @@
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: var(--background);
             color: var(--text);
-            line-height: 1.6;
+            line-height: 1.7;
             font-size: 18px;
         }
 
@@ -82,7 +84,8 @@
         .section-subtitle { color: var(--text-light); margin-bottom: 25px; font-size: 1rem; }
 
         .form-group { margin-bottom: 25px; }
-        .form-group label { display: block; font-weight: 600; margin-bottom: 10px; }
+        .form-group label { display: block; font-weight: 600; margin-bottom: 10px; font-size: 1.05rem; }
+        .label-hint { font-weight: 400; color: var(--text-light); font-size: 0.9rem; display: block; margin-top: 4px; }
         .required::after { content: " *"; color: var(--error); }
 
         input[type="text"], input[type="email"], input[type="tel"], textarea, select {
@@ -100,11 +103,13 @@
             box-shadow: 0 0 0 3px var(--primary-light);
         }
 
-        textarea { min-height: 120px; resize: vertical; }
+        textarea { min-height: 100px; resize: vertical; }
 
         .option-cards { display: flex; flex-direction: column; gap: 12px; }
         .option-card { position: relative; }
-        .option-card input { position: absolute; opacity: 0; pointer-events: none; }
+        .option-card input[type="radio"], .option-card input[type="checkbox"] { 
+            position: absolute; opacity: 0; pointer-events: none; 
+        }
 
         .option-card label {
             display: flex;
@@ -116,6 +121,7 @@
             cursor: pointer;
             transition: all 0.2s ease;
             font-weight: 400;
+            font-size: 1rem;
         }
 
         .option-card label:hover { border-color: var(--primary); background: var(--primary-light); }
@@ -126,8 +132,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 24px;
-            height: 24px;
+            width: 26px;
+            height: 26px;
             background: var(--primary);
             color: white;
             border-radius: 50%;
@@ -139,8 +145,8 @@
         .option-card label::before {
             content: "";
             display: block;
-            width: 24px;
-            height: 24px;
+            width: 26px;
+            height: 26px;
             border: 2px solid var(--border);
             border-radius: 50%;
             margin-right: 12px;
@@ -152,23 +158,39 @@
         .rating-scale .option-card label { justify-content: center; padding: 14px 10px; font-weight: 600; }
         .rating-scale .option-card label::before { display: none; }
         .rating-scale .option-card input:checked + label { background: var(--primary); color: white; border-color: var(--primary); }
-        .scale-labels { display: flex; justify-content: space-between; margin-top: 8px; font-size: 0.85rem; color: var(--text-light); }
+        .scale-labels { display: flex; justify-content: space-between; margin-top: 8px; font-size: 0.9rem; color: var(--text-light); }
 
-        .checkbox-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+        .checkbox-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
         .checkbox-grid .option-card label::before { border-radius: 6px; }
+
+        /* Autre field styling */
+        .autre-field {
+            margin-top: 12px;
+            padding-left: 38px;
+            display: none;
+        }
+        .autre-field.visible { display: block; }
+        .autre-field input {
+            width: 100%;
+            padding: 12px 14px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            font-size: 1rem;
+        }
 
         .nav-buttons { display: flex; justify-content: space-between; gap: 15px; margin-top: 30px; }
 
         .btn {
             padding: 16px 32px;
             border-radius: 12px;
-            font-size: 1rem;
+            font-size: 1.05rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
             border: none;
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 8px;
         }
 
@@ -182,6 +204,20 @@
         .btn-secondary { background: var(--white); color: var(--text); border: 2px solid var(--border); }
         .btn-secondary:hover { border-color: var(--primary); color: var(--primary); }
         .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+        /* Submit button - More prominent */
+        .btn-submit {
+            background: linear-gradient(135deg, var(--submit) 0%, var(--submit-dark) 100%);
+            color: white;
+            flex: 1;
+            padding: 20px 32px;
+            font-size: 1.15rem;
+            box-shadow: 0 4px 15px rgba(230, 126, 34, 0.3);
+        }
+        .btn-submit:hover { 
+            transform: translateY(-3px); 
+            box-shadow: 0 8px 25px rgba(230, 126, 34, 0.4); 
+        }
 
         .btn.loading { pointer-events: none; opacity: 0.7; }
         .btn.loading::after {
@@ -200,7 +236,7 @@
         .success-message { text-align: center; padding: 60px 30px; }
         .success-icon { font-size: 4rem; margin-bottom: 20px; }
         .success-message h2 { color: var(--primary); margin-bottom: 15px; font-size: 1.8rem; }
-        .success-message p { color: var(--text-light); font-size: 1.1rem; }
+        .success-message p { color: var(--text-light); font-size: 1.1rem; margin-bottom: 10px; }
 
         .info-box {
             background: var(--accent-light);
@@ -211,6 +247,24 @@
             font-size: 0.95rem;
         }
         .info-box strong { color: var(--primary-dark); }
+
+        /* Lead magnet box */
+        .lead-magnet {
+            background: linear-gradient(135deg, #fff9e6 0%, #fff3cd 100%);
+            border: 2px solid #f0c14b;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+        .lead-magnet-title {
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .lead-magnet p { font-size: 0.95rem; color: var(--text); margin: 0; }
 
         .privacy-note {
             background: var(--primary-light);
@@ -234,6 +288,10 @@
             display: none;
         }
 
+        /* Hidden by default */
+        .conditional-group { display: none; }
+        .conditional-group.visible { display: block; }
+
         @media (max-width: 600px) {
             body { font-size: 16px; }
             .header h1 { font-size: 1.6rem; }
@@ -242,6 +300,7 @@
             .btn { width: 100%; justify-content: center; }
             .rating-scale { gap: 6px; }
             .rating-scale .option-card label { padding: 12px 8px; font-size: 0.9rem; }
+            .checkbox-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -290,8 +349,8 @@
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label class="required">Votre tranche d'âge :</label>
+                <div class="form-group" id="age_group">
+                    <label class="required" id="age_label">Votre tranche d'âge :</label>
                     <div class="option-cards">
                         <div class="option-card">
                             <input type="radio" name="age" id="age_moins45" value="Moins de 45 ans" required>
@@ -312,11 +371,12 @@
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label class="required">Situation de logement (vous ou votre proche) :</label>
+                <!-- Conditional: Only for Seniors and Aidants -->
+                <div class="form-group conditional-group" id="logement_group">
+                    <label class="required" id="logement_label">Situation de logement :</label>
                     <div class="option-cards">
                         <div class="option-card">
-                            <input type="radio" name="logement" id="log_seul" value="Seul(e) à domicile" required>
+                            <input type="radio" name="logement" id="log_seul" value="Seul(e) à domicile">
                             <label for="log_seul">Seul(e) à domicile</label>
                         </div>
                         <div class="option-card">
@@ -334,6 +394,29 @@
                     </div>
                 </div>
 
+                <!-- Conditional: Only for Professionals -->
+                <div class="form-group conditional-group" id="pro_context_group">
+                    <label class="required">Dans quel contexte exercez-vous ?</label>
+                    <div class="option-cards">
+                        <div class="option-card">
+                            <input type="radio" name="pro_context" id="pro_domicile" value="Aide à domicile (SAAD, SSIAD)">
+                            <label for="pro_domicile">Aide à domicile (SAAD, SSIAD)</label>
+                        </div>
+                        <div class="option-card">
+                            <input type="radio" name="pro_context" id="pro_ehpad" value="EHPAD / Résidence seniors">
+                            <label for="pro_ehpad">EHPAD / Résidence seniors</label>
+                        </div>
+                        <div class="option-card">
+                            <input type="radio" name="pro_context" id="pro_liberal" value="Libéral (infirmier, kiné, médecin)">
+                            <label for="pro_liberal">Libéral (infirmier, kiné, médecin)</label>
+                        </div>
+                        <div class="option-card">
+                            <input type="radio" name="pro_context" id="pro_autre" value="Autre contexte professionnel">
+                            <label for="pro_autre">Autre</label>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="nav-buttons">
                     <div></div>
                     <button type="button" class="btn btn-primary" onclick="nextSection()">Continuer →</button>
@@ -346,21 +429,25 @@
                 <p class="section-subtitle">Quels sont les défis du quotidien ?</p>
 
                 <div class="form-group">
-                    <label class="required">Quelles difficultés rencontrez-vous au quotidien ? (plusieurs réponses possibles)</label>
+                    <label class="required">Quelles difficultés rencontrez-vous au quotidien ?
+                        <span class="label-hint">Plusieurs réponses possibles</span>
+                    </label>
                     <div class="checkbox-grid">
-                        <div class="option-card"><input type="checkbox" name="difficultes" id="diff_medicaments" value="Gestion des médicaments"><label for="diff_medicaments">Gestion des médicaments</label></div>
-                        <div class="option-card"><input type="checkbox" name="difficultes" id="diff_rdv" value="Rappel des rendez-vous"><label for="diff_rdv">Rappel des rendez-vous</label></div>
-                        <div class="option-card"><input type="checkbox" name="difficultes" id="diff_isolement" value="Sentiment d'isolement"><label for="diff_isolement">Sentiment d'isolement</label></div>
-                        <div class="option-card"><input type="checkbox" name="difficultes" id="diff_securite" value="Sécurité à domicile"><label for="diff_securite">Sécurité à domicile (chutes)</label></div>
-                        <div class="option-card"><input type="checkbox" name="difficultes" id="diff_coordination" value="Coordination avec les aidants"><label for="diff_coordination">Coordination avec les aidants</label></div>
-                        <div class="option-card"><input type="checkbox" name="difficultes" id="diff_administratif" value="Démarches administratives"><label for="diff_administratif">Démarches administratives</label></div>
-                        <div class="option-card"><input type="checkbox" name="difficultes" id="diff_mobilite" value="Mobilité dans le logement"><label for="diff_mobilite">Mobilité dans le logement</label></div>
-                        <div class="option-card"><input type="checkbox" name="difficultes" id="diff_technologie" value="Utilisation de la technologie"><label for="diff_technologie">Utilisation de la technologie</label></div>
+                        <div class="option-card"><input type="checkbox" name="difficultes" id="diff_medicaments" value="Gestion des médicaments"><label for="diff_medicaments">💊 Gestion des médicaments</label></div>
+                        <div class="option-card"><input type="checkbox" name="difficultes" id="diff_rdv" value="Rappel des rendez-vous"><label for="diff_rdv">📅 Rappel des rendez-vous</label></div>
+                        <div class="option-card"><input type="checkbox" name="difficultes" id="diff_isolement" value="Sentiment d'isolement"><label for="diff_isolement">😔 Sentiment d'isolement</label></div>
+                        <div class="option-card"><input type="checkbox" name="difficultes" id="diff_securite" value="Sécurité à domicile"><label for="diff_securite">🏠 Sécurité à domicile (chutes)</label></div>
+                        <div class="option-card"><input type="checkbox" name="difficultes" id="diff_coordination" value="Coordination avec les aidants"><label for="diff_coordination">🤝 Coordination avec les proches</label></div>
+                        <div class="option-card"><input type="checkbox" name="difficultes" id="diff_administratif" value="Démarches administratives"><label for="diff_administratif">📄 Démarches administratives</label></div>
+                        <div class="option-card"><input type="checkbox" name="difficultes" id="diff_mobilite" value="Mobilité dans le logement"><label for="diff_mobilite">🚶 Mobilité dans le logement</label></div>
+                        <div class="option-card"><input type="checkbox" name="difficultes" id="diff_technologie" value="Utilisation de la technologie"><label for="diff_technologie">📱 Utilisation de la technologie</label></div>
+                        <div class="option-card"><input type="checkbox" name="difficultes" id="diff_charge" value="Charge mentale / stress"><label for="diff_charge">🧠 Charge mentale / stress</label></div>
+                        <div class="option-card"><input type="checkbox" name="difficultes" id="diff_equilibre" value="Équilibre vie pro / aidant"><label for="diff_equilibre">⚖️ Concilier vie pro et rôle d'aidant</label></div>
                     </div>
                 </div>
 
-                <div class="form-group" id="aidant_temps_group" style="display: none;">
-                    <label>Si vous êtes aidant : combien de temps consacrez-vous par semaine ?</label>
+                <div class="form-group conditional-group" id="aidant_temps_group">
+                    <label>En tant qu'aidant, combien de temps consacrez-vous par semaine à votre proche ?</label>
                     <div class="option-cards">
                         <div class="option-card"><input type="radio" name="temps_aidant" id="temps_moins5" value="Moins de 5h"><label for="temps_moins5">Moins de 5 heures</label></div>
                         <div class="option-card"><input type="radio" name="temps_aidant" id="temps_5_10" value="5-10h"><label for="temps_5_10">5 à 10 heures</label></div>
@@ -370,14 +457,16 @@
                 </div>
 
                 <div class="form-group">
-                    <label>Quelles solutions utilisez-vous actuellement ?</label>
+                    <label>Quelles solutions utilisez-vous actuellement ?
+                        <span class="label-hint">Plusieurs réponses possibles</span>
+                    </label>
                     <div class="checkbox-grid">
-                        <div class="option-card"><input type="checkbox" name="solutions_actuelles" id="sol_teleassistance" value="Téléassistance"><label for="sol_teleassistance">Téléassistance (médaillon)</label></div>
-                        <div class="option-card"><input type="checkbox" name="solutions_actuelles" id="sol_aide" value="Aide à domicile"><label for="sol_aide">Aide à domicile</label></div>
-                        <div class="option-card"><input type="checkbox" name="solutions_actuelles" id="sol_famille" value="Appels famille"><label for="sol_famille">Appels réguliers de la famille</label></div>
-                        <div class="option-card"><input type="checkbox" name="solutions_actuelles" id="sol_alexa" value="Assistant vocal"><label for="sol_alexa">Assistant vocal (Alexa, Google)</label></div>
-                        <div class="option-card"><input type="checkbox" name="solutions_actuelles" id="sol_tablette" value="Tablette senior"><label for="sol_tablette">Tablette senior (Ardoiz...)</label></div>
-                        <div class="option-card"><input type="checkbox" name="solutions_actuelles" id="sol_aucune" value="Aucune solution"><label for="sol_aucune">Aucune solution particulière</label></div>
+                        <div class="option-card"><input type="checkbox" name="solutions_actuelles" id="sol_teleassistance" value="Téléassistance"><label for="sol_teleassistance">🆘 Téléassistance (médaillon)</label></div>
+                        <div class="option-card"><input type="checkbox" name="solutions_actuelles" id="sol_aide" value="Aide à domicile"><label for="sol_aide">👩‍⚕️ Aide à domicile</label></div>
+                        <div class="option-card"><input type="checkbox" name="solutions_actuelles" id="sol_famille" value="Appels famille"><label for="sol_famille">📞 Appels réguliers de la famille</label></div>
+                        <div class="option-card"><input type="checkbox" name="solutions_actuelles" id="sol_alexa" value="Assistant vocal"><label for="sol_alexa">🔊 Assistant vocal (Alexa, Google)</label></div>
+                        <div class="option-card"><input type="checkbox" name="solutions_actuelles" id="sol_tablette" value="Tablette senior"><label for="sol_tablette">📱 Tablette senior (Ardoiz...)</label></div>
+                        <div class="option-card"><input type="checkbox" name="solutions_actuelles" id="sol_aucune" value="Aucune solution"><label for="sol_aucune">❌ Aucune solution particulière</label></div>
                     </div>
                 </div>
 
@@ -395,18 +484,19 @@
                 <div class="form-group">
                     <label class="required">Quel appareil utilisez-vous le plus souvent ?</label>
                     <div class="option-cards">
-                        <div class="option-card"><input type="radio" name="appareil" id="app_smartphone" value="Smartphone" required><label for="app_smartphone">Smartphone</label></div>
-                        <div class="option-card"><input type="radio" name="appareil" id="app_tablette" value="Tablette"><label for="app_tablette">Tablette</label></div>
-                        <div class="option-card"><input type="radio" name="appareil" id="app_ordinateur" value="Ordinateur"><label for="app_ordinateur">Ordinateur</label></div>
-                        <div class="option-card"><input type="radio" name="appareil" id="app_aucun" value="Aucun / Très peu"><label for="app_aucun">Aucun / Très peu</label></div>
+                        <div class="option-card"><input type="radio" name="appareil" id="app_smartphone" value="Smartphone" required><label for="app_smartphone">📱 Smartphone</label></div>
+                        <div class="option-card"><input type="radio" name="appareil" id="app_tablette" value="Tablette"><label for="app_tablette">📲 Tablette</label></div>
+                        <div class="option-card"><input type="radio" name="appareil" id="app_ordinateur" value="Ordinateur"><label for="app_ordinateur">💻 Ordinateur</label></div>
+                        <div class="option-card"><input type="radio" name="appareil" id="app_aucun" value="Aucun / Très peu"><label for="app_aucun">❌ Aucun / Très peu</label></div>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label class="required">Comment préférez-vous interagir avec un assistant ?</label>
-                    <div class="info-box"><strong>💡 Notre assistant peut s'adapter</strong> : vous parlez naturellement et il vous répond.</div>
+                    <div class="info-box"><strong>💡 Notre assistant s'adapte à vous</strong> : choisissez le mode qui vous convient le mieux.</div>
                     <div class="option-cards">
                         <div class="option-card"><input type="radio" name="interface" id="int_voix" value="Voix" required><label for="int_voix">🎤 Par la voix (parler et écouter)</label></div>
+                        <div class="option-card"><input type="radio" name="interface" id="int_tactile" value="Écran tactile"><label for="int_tactile">👆 Par écran tactile (boutons simples)</label></div>
                         <div class="option-card"><input type="radio" name="interface" id="int_texte" value="Texte"><label for="int_texte">⌨️ Par texte (écrire et lire)</label></div>
                         <div class="option-card"><input type="radio" name="interface" id="int_video" value="Avatar"><label for="int_video">👤 Avec un visage / avatar à l'écran</label></div>
                         <div class="option-card"><input type="radio" name="interface" id="int_mix" value="Mélange"><label for="int_mix">🔄 Un mélange selon les situations</label></div>
@@ -416,10 +506,10 @@
                 <div class="form-group">
                     <label class="required">Avez-vous déjà utilisé un assistant vocal (Siri, Alexa, Google) ?</label>
                     <div class="option-cards">
-                        <div class="option-card"><input type="radio" name="experience_vocal" id="exp_regulier" value="Oui, régulièrement" required><label for="exp_regulier">Oui, régulièrement</label></div>
-                        <div class="option-card"><input type="radio" name="experience_vocal" id="exp_parfois" value="Oui, parfois"><label for="exp_parfois">Oui, parfois</label></div>
-                        <div class="option-card"><input type="radio" name="experience_vocal" id="exp_essaye" value="Essayé mais abandonné"><label for="exp_essaye">J'ai essayé mais abandonné</label></div>
-                        <div class="option-card"><input type="radio" name="experience_vocal" id="exp_jamais" value="Non, jamais"><label for="exp_jamais">Non, jamais</label></div>
+                        <div class="option-card"><input type="radio" name="experience_vocal" id="exp_regulier" value="Oui, régulièrement" required><label for="exp_regulier">✅ Oui, régulièrement</label></div>
+                        <div class="option-card"><input type="radio" name="experience_vocal" id="exp_parfois" value="Oui, parfois"><label for="exp_parfois">👍 Oui, parfois</label></div>
+                        <div class="option-card"><input type="radio" name="experience_vocal" id="exp_essaye" value="Essayé mais abandonné"><label for="exp_essaye">🤔 J'ai essayé mais abandonné</label></div>
+                        <div class="option-card"><input type="radio" name="experience_vocal" id="exp_jamais" value="Non, jamais"><label for="exp_jamais">❌ Non, jamais</label></div>
                     </div>
                 </div>
 
@@ -432,19 +522,21 @@
             <!-- Section 4: Solution -->
             <div class="form-section" data-section="4">
                 <h2 class="section-title">💡 Notre Solution</h2>
-                <p class="section-subtitle">Un assistant IA gratuit, bienveillant et qui vous connaît</p>
+                <p class="section-subtitle">Un assistant IA bienveillant qui vous connaît</p>
 
                 <div class="info-box">
                     <strong>🏠 Trust First</strong> est un assistant IA qui :<br><br>
                     • <strong>Se souvient</strong> de vous (famille, habitudes, préférences)<br>
                     • <strong>Vous accompagne</strong> au quotidien (rappels, météo, conversations)<br>
                     • <strong>Rassure vos proches</strong> sans être intrusif<br>
-                    • <strong>Est gratuit</strong> pour vous et votre famille<br>
-                    • <strong>Respecte vos données</strong> (hébergement certifié en France)
+                    • <strong>Respecte vos données</strong> (hébergement certifié en France)<br><br>
+                    <em>💰 <strong>Gratuit pour les familles</strong> — financé par des partenariats avec des services de confiance (adaptation du domicile, mutuelles) que nous vous recommandons uniquement si vous en avez besoin.</em>
                 </div>
 
                 <div class="form-group">
-                    <label class="required">Quelles fonctionnalités vous intéressent le plus ? (max 3)</label>
+                    <label class="required">Quelles fonctionnalités vous intéressent le plus ?
+                        <span class="label-hint">Maximum 3 choix</span>
+                    </label>
                     <div class="checkbox-grid">
                         <div class="option-card"><input type="checkbox" name="fonctionnalites" id="feat_rappels" value="Rappels médicaments/RDV"><label for="feat_rappels">📅 Rappels médicaments et RDV</label></div>
                         <div class="option-card"><input type="checkbox" name="fonctionnalites" id="feat_conversation" value="Conversation et compagnie"><label for="feat_conversation">💬 Conversation et compagnie</label></div>
@@ -452,6 +544,11 @@
                         <div class="option-card"><input type="checkbox" name="fonctionnalites" id="feat_famille" value="Lien avec la famille"><label for="feat_famille">👨‍👩‍👧 Lien facilité avec la famille</label></div>
                         <div class="option-card"><input type="checkbox" name="fonctionnalites" id="feat_cognitif" value="Stimulation cognitive"><label for="feat_cognitif">🧠 Jeux et stimulation cognitive</label></div>
                         <div class="option-card"><input type="checkbox" name="fonctionnalites" id="feat_services" value="Accès à des services"><label for="feat_services">🔧 Aide pour trouver des services</label></div>
+                        <div class="option-card"><input type="checkbox" name="fonctionnalites" id="feat_urgence" value="Appel d'urgence"><label for="feat_urgence">🆘 Appel des secours en cas d'urgence</label></div>
+                        <div class="option-card"><input type="checkbox" name="fonctionnalites" id="feat_autre" value="Autre"><label for="feat_autre">✨ Autre (précisez ci-dessous)</label></div>
+                    </div>
+                    <div class="autre-field" id="fonctionnalite_autre_field">
+                        <input type="text" name="fonctionnalite_autre_texte" id="fonctionnalite_autre_texte" placeholder="Quelle autre fonctionnalité souhaiteriez-vous ?">
                     </div>
                 </div>
 
@@ -464,7 +561,7 @@
                         <div class="option-card"><input type="radio" name="interet" id="int_4" value="4"><label for="int_4">4</label></div>
                         <div class="option-card"><input type="radio" name="interet" id="int_5" value="5"><label for="int_5">5</label></div>
                     </div>
-                    <div class="scale-labels"><span>Pas du tout</span><span>Très intéressé(e)</span></div>
+                    <div class="scale-labels"><span>Pas du tout intéressé(e)</span><span>Très intéressé(e)</span></div>
                 </div>
 
                 <div class="form-group">
@@ -489,6 +586,11 @@
                 <h2 class="section-title">📬 Restons en Contact</h2>
                 <p class="section-subtitle">Facultatif - Pour participer à la suite de l'aventure</p>
 
+                <div class="lead-magnet">
+                    <div class="lead-magnet-title">🎁 En bonus</div>
+                    <p>Laissez votre email pour recevoir en avant-première notre <strong>guide gratuit : "5 conseils pour sécuriser le domicile d'un proche"</strong></p>
+                </div>
+
                 <div class="form-group">
                     <label>Seriez-vous intéressé(e) pour tester notre solution en avant-première ?</label>
                     <div class="option-cards">
@@ -499,7 +601,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="email">Votre email (facultatif)</label>
+                    <label for="email">Votre email (pour recevoir le guide + les actualités)</label>
                     <input type="email" name="email" id="email" placeholder="exemple@email.com">
                 </div>
 
@@ -509,18 +611,18 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="commentaires">Un commentaire, une suggestion ? (facultatif)</label>
-                    <textarea name="commentaires" id="commentaires" placeholder="Partagez-nous vos idées, vos attentes ou vos craintes..."></textarea>
+                    <label for="commentaires">Un commentaire, une idée, une suggestion ?</label>
+                    <textarea name="commentaires" id="commentaires" placeholder="Partagez-nous vos idées, vos attentes ou vos craintes... Chaque retour compte !"></textarea>
                 </div>
 
                 <div class="privacy-note">
                     <strong>🔐 Vos données sont protégées</strong><br>
-                    Vos réponses sont anonymes. Si vous laissez vos coordonnées, elles ne seront jamais partagées avec des tiers. Conformément au RGPD, vous pouvez demander leur suppression à tout moment.
+                    Vos réponses sont confidentielles. Si vous laissez vos coordonnées, elles ne seront jamais partagées avec des tiers. Conformément au RGPD, vous pouvez demander leur suppression à tout moment en nous écrivant.
                 </div>
 
                 <div class="nav-buttons">
                     <button type="button" class="btn btn-secondary" onclick="prevSection()">← Retour</button>
-                    <button type="submit" class="btn btn-primary" id="submitBtn">Envoyer mes réponses ✓</button>
+                    <button type="submit" class="btn btn-submit" id="submitBtn">🚀 Envoyer mes réponses</button>
                 </div>
             </div>
 
@@ -528,10 +630,11 @@
             <div class="form-section" data-section="success" id="successSection">
                 <div class="success-message">
                     <div class="success-icon">🎉</div>
-                    <h2>Merci pour votre participation !</h2>
+                    <h2>Merci infiniment !</h2>
                     <p>Vos réponses sont précieuses et nous aideront à créer une solution vraiment adaptée à vos besoins.</p>
+                    <p>Si vous avez laissé votre email, vous recevrez bientôt notre guide gratuit sur la sécurisation du domicile.</p>
                     <br>
-                    <p>Si vous avez laissé vos coordonnées, nous vous recontacterons prochainement.</p>
+                    <p style="font-size: 0.95rem;">💙 N'hésitez pas à partager ce questionnaire avec vos proches !</p>
                 </div>
             </div>
         </form>
@@ -545,7 +648,7 @@
         // =====================================================
         // CONFIGURATION - REMPLACEZ CETTE URL PAR LA VÔTRE
         // =====================================================
-        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyf1NW7YEvaeYulgElLDRc3TBFmM12jPuODvIhbYtFyEz_ZE_Zxq6mNHLKclGb-MTC1/exec';
+        const GOOGLE_SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
         // =====================================================
 
         let currentSection = 1;
@@ -565,13 +668,29 @@
 
         function validateCurrentSection() {
             const section = document.querySelector(`[data-section="${currentSection}"]`);
-            const required = section.querySelectorAll('[required]');
-            for (let field of required) {
-                if (field.type === 'radio') {
-                    if (!section.querySelector(`input[name="${field.name}"]:checked`)) {
-                        showError('Veuillez répondre à toutes les questions obligatoires.');
-                        return false;
-                    }
+            const profil = document.querySelector('input[name="profil"]:checked')?.value;
+            
+            // Get all required fields in current section
+            const requiredRadios = section.querySelectorAll('input[type="radio"][required]');
+            const checkedNames = new Set();
+            
+            for (let field of requiredRadios) {
+                const name = field.name;
+                if (checkedNames.has(name)) continue;
+                checkedNames.add(name);
+                
+                // Skip logement validation for professionals
+                if (name === 'logement' && (profil === 'Professionnel de santé/social' || profil === 'Autre')) {
+                    continue;
+                }
+                // Skip pro_context for non-professionals
+                if (name === 'pro_context' && profil !== 'Professionnel de santé/social') {
+                    continue;
+                }
+                
+                if (!section.querySelector(`input[name="${name}"]:checked`)) {
+                    showError('Veuillez répondre à toutes les questions obligatoires.');
+                    return false;
                 }
             }
             hideError();
@@ -596,18 +715,62 @@
             if (currentSection > 1) { currentSection--; showSection(currentSection); updateProgress(); }
         }
 
-        // Show aidant question
+        // Conditional logic based on profile
         document.querySelectorAll('input[name="profil"]').forEach(r => {
             r.addEventListener('change', function() {
-                document.getElementById('aidant_temps_group').style.display = 
-                    this.value === 'Aidant familial' ? 'block' : 'none';
+                const logementGroup = document.getElementById('logement_group');
+                const proContextGroup = document.getElementById('pro_context_group');
+                const aidantTempsGroup = document.getElementById('aidant_temps_group');
+                const ageLabel = document.getElementById('age_label');
+                const logementLabel = document.getElementById('logement_label');
+                
+                // Reset visibility
+                logementGroup.classList.remove('visible');
+                proContextGroup.classList.remove('visible');
+                aidantTempsGroup.classList.remove('visible');
+                
+                // Clear required attribute
+                logementGroup.querySelectorAll('input').forEach(i => i.required = false);
+                proContextGroup.querySelectorAll('input').forEach(i => i.required = false);
+                
+                if (this.value === 'Senior (60 ans et plus)') {
+                    logementGroup.classList.add('visible');
+                    logementGroup.querySelector('input').required = true;
+                    ageLabel.innerHTML = 'Votre tranche d\'âge :<span class="label-hint"></span>';
+                    logementLabel.textContent = 'Votre situation de logement :';
+                } else if (this.value === 'Aidant familial') {
+                    logementGroup.classList.add('visible');
+                    logementGroup.querySelector('input').required = true;
+                    aidantTempsGroup.classList.add('visible');
+                    ageLabel.innerHTML = 'Votre tranche d\'âge (en tant qu\'aidant) :<span class="label-hint"></span>';
+                    logementLabel.textContent = 'Situation de logement de votre proche :';
+                } else if (this.value === 'Professionnel de santé/social') {
+                    proContextGroup.classList.add('visible');
+                    proContextGroup.querySelector('input').required = true;
+                    ageLabel.innerHTML = 'Votre tranche d\'âge :<span class="label-hint"></span>';
+                } else {
+                    // "Autre" - no additional questions
+                    ageLabel.innerHTML = 'Votre tranche d\'âge :<span class="label-hint"></span>';
+                }
             });
+        });
+
+        // Show "Autre" text field for features
+        document.getElementById('feat_autre').addEventListener('change', function() {
+            const autreField = document.getElementById('fonctionnalite_autre_field');
+            if (this.checked) {
+                autreField.classList.add('visible');
+            } else {
+                autreField.classList.remove('visible');
+                document.getElementById('fonctionnalite_autre_texte').value = '';
+            }
         });
 
         // Max 3 features
         document.querySelectorAll('input[name="fonctionnalites"]').forEach(cb => {
             cb.addEventListener('change', function() {
-                if (document.querySelectorAll('input[name="fonctionnalites"]:checked').length > 3) {
+                const checked = document.querySelectorAll('input[name="fonctionnalites"]:checked');
+                if (checked.length > 3) {
                     this.checked = false;
                     showError('Vous pouvez sélectionner 3 fonctionnalités maximum.');
                 }
@@ -621,6 +784,7 @@
                 profil: f.querySelector('input[name="profil"]:checked')?.value || '',
                 age: f.querySelector('input[name="age"]:checked')?.value || '',
                 logement: f.querySelector('input[name="logement"]:checked')?.value || '',
+                pro_context: f.querySelector('input[name="pro_context"]:checked')?.value || '',
                 difficultes: [...f.querySelectorAll('input[name="difficultes"]:checked')].map(e => e.value).join(', '),
                 temps_aidant: f.querySelector('input[name="temps_aidant"]:checked')?.value || '',
                 solutions_actuelles: [...f.querySelectorAll('input[name="solutions_actuelles"]:checked')].map(e => e.value).join(', '),
@@ -628,6 +792,7 @@
                 interface: f.querySelector('input[name="interface"]:checked')?.value || '',
                 experience_vocal: f.querySelector('input[name="experience_vocal"]:checked')?.value || '',
                 fonctionnalites: [...f.querySelectorAll('input[name="fonctionnalites"]:checked')].map(e => e.value).join(', '),
+                fonctionnalite_autre: f.querySelector('#fonctionnalite_autre_texte').value || '',
                 interet: f.querySelector('input[name="interet"]:checked')?.value || '',
                 frein: f.querySelector('input[name="frein"]:checked')?.value || '',
                 beta: f.querySelector('input[name="beta"]:checked')?.value || '',
