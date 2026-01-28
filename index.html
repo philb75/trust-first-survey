@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trust First - Questionnaire Bien Vieillir à Domicile</title>
+    <meta name="description" content="Participez à notre étude sur le bien-vieillir à domicile. Votre avis compte pour créer un assistant IA adapté aux seniors et aidants.">
     <style>
         :root {
             --primary: #0d6a6a;
@@ -34,18 +35,145 @@
 
         .container { max-width: 720px; margin: 0 auto; padding: 20px; }
 
-        .header {
+        /* Hero Header with illustration */
+        .hero {
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
             color: var(--white);
-            padding: 40px 20px;
-            text-align: center;
+            padding: 0;
             margin-bottom: 30px;
-            border-radius: 0 0 20px 20px;
+            border-radius: 0 0 30px 30px;
+            overflow: hidden;
+            position: relative;
         }
 
-        .header h1 { font-size: 2rem; margin-bottom: 10px; }
-        .header p { font-size: 1.1rem; opacity: 0.95; max-width: 500px; margin: 0 auto; }
-        .logo { font-size: 2.5rem; margin-bottom: 15px; }
+        .hero-content {
+            padding: 40px 20px 30px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 { 
+            font-size: 2.2rem; 
+            margin-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .hero-tagline {
+            font-size: 1.15rem;
+            opacity: 0.95;
+            max-width: 500px;
+            margin: 0 auto 20px;
+        }
+
+        /* Illustration with CSS shapes */
+        .hero-illustration {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 10px;
+        }
+
+        .hero-icon {
+            width: 70px;
+            height: 70px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            backdrop-filter: blur(5px);
+            border: 2px solid rgba(255,255,255,0.2);
+        }
+
+        .hero-icon:nth-child(2) {
+            width: 90px;
+            height: 90px;
+            font-size: 2.5rem;
+            background: rgba(255,255,255,0.2);
+        }
+
+        /* Decorative shapes */
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 200px;
+            height: 200px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 50%;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            bottom: -30px;
+            left: -30px;
+            width: 150px;
+            height: 150px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 50%;
+        }
+
+        /* Intro Section */
+        .intro-section {
+            background: var(--white);
+            padding: 25px;
+            border-radius: 16px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            border-left: 5px solid var(--accent);
+        }
+
+        .intro-section h2 {
+            color: var(--primary);
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .intro-section p {
+            color: var(--text);
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+
+        .intro-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0;
+        }
+
+        .intro-section li {
+            padding: 8px 0;
+            padding-left: 30px;
+            position: relative;
+            font-size: 0.95rem;
+        }
+
+        .intro-section li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .intro-highlight {
+            background: var(--primary-light);
+            padding: 12px 15px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            margin-top: 15px;
+        }
+
+        .intro-highlight strong {
+            color: var(--primary);
+        }
 
         .progress-container {
             background: var(--white);
@@ -163,7 +291,6 @@
         .checkbox-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
         .checkbox-grid .option-card label::before { border-radius: 6px; }
 
-        /* Autre field styling */
         .autre-field {
             margin-top: 12px;
             padding-left: 38px;
@@ -205,7 +332,6 @@
         .btn-secondary:hover { border-color: var(--primary); color: var(--primary); }
         .btn:disabled { opacity: 0.5; cursor: not-allowed; }
 
-        /* Submit button - More prominent */
         .btn-submit {
             background: linear-gradient(135deg, var(--submit) 0%, var(--submit-dark) 100%);
             color: white;
@@ -248,7 +374,6 @@
         }
         .info-box strong { color: var(--primary-dark); }
 
-        /* Lead magnet box */
         .lead-magnet {
             background: linear-gradient(135deg, #fff9e6 0%, #fff3cd 100%);
             border: 2px solid #f0c14b;
@@ -276,7 +401,14 @@
         }
         .privacy-note strong { color: var(--primary); }
 
-        .footer { text-align: center; padding: 30px 20px; color: var(--text-light); font-size: 0.9rem; }
+        .footer { 
+            text-align: center; 
+            padding: 30px 20px; 
+            color: var(--text-light); 
+            font-size: 0.9rem;
+            border-top: 1px solid var(--border);
+            margin-top: 20px;
+        }
 
         .error-message {
             background: #fee;
@@ -288,30 +420,56 @@
             display: none;
         }
 
-        /* Hidden by default */
         .conditional-group { display: none; }
         .conditional-group.visible { display: block; }
 
         @media (max-width: 600px) {
             body { font-size: 16px; }
-            .header h1 { font-size: 1.6rem; }
+            .hero h1 { font-size: 1.7rem; }
+            .hero-icon { width: 55px; height: 55px; font-size: 1.5rem; }
+            .hero-icon:nth-child(2) { width: 70px; height: 70px; font-size: 2rem; }
             .form-section { padding: 20px; }
             .nav-buttons { flex-direction: column; }
             .btn { width: 100%; justify-content: center; }
             .rating-scale { gap: 6px; }
             .rating-scale .option-card label { padding: 12px 8px; font-size: 0.9rem; }
             .checkbox-grid { grid-template-columns: 1fr; }
+            .intro-section { padding: 20px; }
         }
     </style>
 </head>
 <body>
-    <header class="header">
-        <div class="logo">🏠💙</div>
-        <h1>Trust First</h1>
-        <p>Aidez-nous à concevoir l'assistant IA qui vous accompagnera dans le bien-vieillir à domicile</p>
+    <!-- Hero Header -->
+    <header class="hero">
+        <div class="hero-content">
+            <div class="hero-illustration">
+                <div class="hero-icon">👴</div>
+                <div class="hero-icon">🏠</div>
+                <div class="hero-icon">💙</div>
+            </div>
+            <h1>Trust First</h1>
+            <p class="hero-tagline">L'assistant IA bienveillant pour bien vieillir à domicile</p>
+        </div>
     </header>
 
     <div class="container">
+        <!-- Introduction Section -->
+        <div class="intro-section">
+            <h2>👋 Pourquoi ce questionnaire ?</h2>
+            <p>Nous développons <strong>Trust First</strong>, un assistant intelligent et gratuit pour aider les seniors à rester chez eux en toute sérénité, tout en rassurant leurs proches.</p>
+            <p>Avant de le créer, nous avons besoin de <strong>comprendre vos vrais besoins</strong>.</p>
+            
+            <ul>
+                <li><strong>5 minutes</strong> pour répondre</li>
+                <li>Vos réponses sont <strong>anonymes</strong></li>
+                <li>Aucune connaissance technique requise</li>
+            </ul>
+            
+            <div class="intro-highlight">
+                <strong>🎯 Qui peut répondre ?</strong> Seniors, aidants familiaux (vous accompagnez un proche âgé), ou professionnels du médico-social.
+            </div>
+        </div>
+
         <div class="progress-container">
             <div class="progress-bar">
                 <div class="progress-fill" id="progressFill" style="width: 0%"></div>
@@ -371,7 +529,6 @@
                     </div>
                 </div>
 
-                <!-- Conditional: Only for Seniors and Aidants -->
                 <div class="form-group conditional-group" id="logement_group">
                     <label class="required" id="logement_label">Situation de logement :</label>
                     <div class="option-cards">
@@ -394,7 +551,6 @@
                     </div>
                 </div>
 
-                <!-- Conditional: Only for Professionals -->
                 <div class="form-group conditional-group" id="pro_context_group">
                     <label class="required">Dans quel contexte exercez-vous ?</label>
                     <div class="option-cards">
@@ -430,7 +586,7 @@
 
                 <div class="form-group">
                     <label class="required">Quelles difficultés rencontrez-vous au quotidien ?
-                        <span class="label-hint">Plusieurs réponses possibles</span>
+                        <span class="label-hint">Sélectionnez au moins une réponse</span>
                     </label>
                     <div class="checkbox-grid">
                         <div class="option-card"><input type="checkbox" name="difficultes" id="diff_medicaments" value="Gestion des médicaments"><label for="diff_medicaments">💊 Gestion des médicaments</label></div>
@@ -443,6 +599,7 @@
                         <div class="option-card"><input type="checkbox" name="difficultes" id="diff_technologie" value="Utilisation de la technologie"><label for="diff_technologie">📱 Utilisation de la technologie</label></div>
                         <div class="option-card"><input type="checkbox" name="difficultes" id="diff_charge" value="Charge mentale / stress"><label for="diff_charge">🧠 Charge mentale / stress</label></div>
                         <div class="option-card"><input type="checkbox" name="difficultes" id="diff_equilibre" value="Équilibre vie pro / aidant"><label for="diff_equilibre">⚖️ Concilier vie pro et rôle d'aidant</label></div>
+                        <div class="option-card"><input type="checkbox" name="difficultes" id="diff_aucune" value="Aucune difficulté particulière"><label for="diff_aucune">✅ Aucune difficulté particulière</label></div>
                     </div>
                 </div>
 
@@ -646,7 +803,9 @@
 
     <script>
         // =====================================================
-        // CONFIGURATION - REMPLACEZ CETTE URL PAR LA VÔTRE
+        // ⚠️ CONFIGURATION IMPORTANTE
+        // Remplacez cette URL par celle de votre Google Apps Script
+        // (voir README.md pour les instructions)
         // =====================================================
         const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyHSDB2MnMWhdI21AZGysXsPO4rNCw5Yy-1EFFlHkKpiYKvoR5irFH5XuH1eyoClfeS/exec';
         // =====================================================
@@ -670,7 +829,27 @@
             const section = document.querySelector(`[data-section="${currentSection}"]`);
             const profil = document.querySelector('input[name="profil"]:checked')?.value;
             
-            // Get all required fields in current section
+            // Section 2: Validate at least one difficulty is selected
+            if (currentSection === 2) {
+                const difficultesChecked = document.querySelectorAll('input[name="difficultes"]:checked');
+                if (difficultesChecked.length === 0) {
+                    showError('Veuillez sélectionner au moins une difficulté (ou "Aucune difficulté particulière").');
+                    return false;
+                }
+            }
+
+            // Section 4: Validate "Autre" text field if checkbox is checked
+            if (currentSection === 4) {
+                const autreChecked = document.getElementById('feat_autre').checked;
+                const autreTexte = document.getElementById('fonctionnalite_autre_texte').value.trim();
+                if (autreChecked && autreTexte === '') {
+                    showError('Veuillez préciser quelle autre fonctionnalité vous souhaiteriez.');
+                    document.getElementById('fonctionnalite_autre_texte').focus();
+                    return false;
+                }
+            }
+            
+            // Validate required radio buttons
             const requiredRadios = section.querySelectorAll('input[type="radio"][required]');
             const checkedNames = new Set();
             
@@ -679,7 +858,7 @@
                 if (checkedNames.has(name)) continue;
                 checkedNames.add(name);
                 
-                // Skip logement validation for professionals
+                // Skip logement validation for professionals and "Autre"
                 if (name === 'logement' && (profil === 'Professionnel de santé/social' || profil === 'Autre')) {
                     continue;
                 }
@@ -724,12 +903,10 @@
                 const ageLabel = document.getElementById('age_label');
                 const logementLabel = document.getElementById('logement_label');
                 
-                // Reset visibility
                 logementGroup.classList.remove('visible');
                 proContextGroup.classList.remove('visible');
                 aidantTempsGroup.classList.remove('visible');
                 
-                // Clear required attribute
                 logementGroup.querySelectorAll('input').forEach(i => i.required = false);
                 proContextGroup.querySelectorAll('input').forEach(i => i.required = false);
                 
@@ -749,7 +926,6 @@
                     proContextGroup.querySelector('input').required = true;
                     ageLabel.innerHTML = 'Votre tranche d\'âge :<span class="label-hint"></span>';
                 } else {
-                    // "Autre" - no additional questions
                     ageLabel.innerHTML = 'Votre tranche d\'âge :<span class="label-hint"></span>';
                 }
             });
@@ -760,6 +936,7 @@
             const autreField = document.getElementById('fonctionnalite_autre_field');
             if (this.checked) {
                 autreField.classList.add('visible');
+                document.getElementById('fonctionnalite_autre_texte').focus();
             } else {
                 autreField.classList.remove('visible');
                 document.getElementById('fonctionnalite_autre_texte').value = '';
@@ -820,6 +997,7 @@
                 document.querySelectorAll('.form-section').forEach(s => s.classList.remove('active'));
                 document.getElementById('successSection').classList.add('active');
                 document.querySelector('.progress-container').style.display = 'none';
+                document.querySelector('.intro-section').style.display = 'none';
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             })
             .catch(err => {
